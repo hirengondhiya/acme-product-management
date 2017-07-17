@@ -29,6 +29,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.prodServiceSubscription = this._ps.getProducts().subscribe((products: Product[]) => this.products = products);
   }
 
+
   ngOnDestroy() {
     this.prodServiceSubscription.unsubscribe();
   }
@@ -37,7 +38,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.showImage = !this.showImage;
   }
 
-  ratingClicked(data) {
+  onRatingClicked(data) {
     console.log(data);
   }
 }
