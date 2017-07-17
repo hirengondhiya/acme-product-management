@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -9,12 +11,29 @@ import { ProductService } from '../product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
-  products: Observable<Product[]>;
+export class ProductListComponent implements OnInit, OnDestroy {
+  imageMargin = 50;
+  imageWidth = 50;
+  products: Product[];
+  productFilter: string = null;
+  prodServiceSubscription: Subscription;
+  showImage = false;
+
   constructor(private _ps: ProductService) { }
   
   ngOnInit() {
-    this.products = this._ps.getProducts();
+    this.prodServiceSubscription = this._ps.getProducts().subscribe((products: Product[]) => this.products = products);
   }
 
+  ngOnDestroy() {
+    this.prodServiceSubscription.unsubscribe();
+  }
+
+  toggleImage() {
+    this.showImage = !this.showImage;
+  }
+
+  ratingClicked(data) {
+    console.log(data);
+  }
 }

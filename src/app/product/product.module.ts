@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { ProductRoutingModule, productRoutingComponents } from './product-routing.module';
@@ -11,6 +12,7 @@ import { ProductNameFilterPipe } from './product-name-filter.pipe';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     HttpModule,
     ProductRoutingModule,
     SharedModule
@@ -23,6 +25,8 @@ import { ProductNameFilterPipe } from './product-name-filter.pipe';
     ProductService
   ],
   exports: [
+    CommonModule,
+    FormsModule,
     HttpModule
   ]
 })
