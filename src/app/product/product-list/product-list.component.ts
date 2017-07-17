@@ -12,8 +12,12 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit, OnDestroy {
+  errorMessage: string;
   imageMargin = 50;
   imageWidth = 50;
+  messages: string[];
+  noProductsFound: boolean;
+  pageTitle = 'Products List';
   products: Product[];
   productFilter: string = null;
   prodServiceSubscription: Subscription;
